@@ -26,19 +26,19 @@ resource "openstack_lb_pool_v2" "example_http_pool" {
 }
 
 resource "openstack_lb_monitor_v2" example_http_monitor {
-  name = "example_http_monitor"
-  delay = 5
-  max_retries = 3
-  timeout = 5
-  type = "HTTP"
-  url_path = "/"
-  http_method = "GET"
+  name           = "example_http_monitor"
+  delay          = 5
+  max_retries    = 3
+  timeout        = 5
+  type           = "HTTP"
+  url_path       = "/"
+  http_method    = "GET"
   expected_codes = "200"
-  pool_id = openstack_lb_pool_v2.example_http_pool.id
+  pool_id        = openstack_lb_pool_v2.example_http_pool.id
 }
 
 resource "openstack_lb_member_v2" "example_http_member" {
-  count = var.node_count
+  count         = var.node_count
   name          = "example_http_member-${count.index}"
   address       = openstack_compute_instance_v2.instance.*.access_ip_v4[count.index]
   protocol_port = 80

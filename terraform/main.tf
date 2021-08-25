@@ -4,7 +4,7 @@ resource "openstack_compute_instance_v2" "instance" {
   name = "node-${count.index}"
 
   image_name = "${var.image_name}-${var.image_tag}"
-  
+
   flavor_name = var.flavor_name
 
   key_pair = openstack_compute_keypair_v2.ssh.name

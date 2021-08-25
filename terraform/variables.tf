@@ -1,10 +1,10 @@
 variable "flavor_name" {
-  type = string
+  type    = string
   default = "Basic-1-1-10"
 }
 
 variable "image_name" {
-  type = string
+  type    = string
   default = "nginx"
 }
 
@@ -13,6 +13,6 @@ variable "image_tag" {
 }
 
 variable "node_count" {
-  type = number
+  type    = number
   default = 1
 }
