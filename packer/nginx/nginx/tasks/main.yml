@@ -1,0 +1,27 @@
+---
+- name: Add nginx repo | Centos
+  yum_repository:
+    baseurl: http://nginx.org/packages/mainline/rhel/7/$basearch/
+    enabled: true
+    gpgcheck: false
+    description: Nginx repo
+    name: nginx
+  when: ansible_facts['os_family'] == "RedHat"
+
+- name: Install Nginx | Centos
+  yum:
+    name: nginx
+    state: present
+  when: ansible_facts['os_family'] == "RedHat"
+
+- name: Add Nginx config
+  template:
+    src: default.conf.j2
+    dest: /etc/nginx/conf.d/default.conf
+    mode: 0644
+
+- name: Start and enable Nginx
+  service:
+    name: nginx
+    enabled: true
+    state: started
